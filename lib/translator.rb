@@ -6,8 +6,8 @@ def load_library(file)
   emoticons = YAML.load_file('./lib/emoticons.yml')
 
   dictionary = {}
-  emoticons.each do |meaning, pic_array|
-    filler = {:english => pic_array[0], :japanese => pic_array[1]}
+  emoticons.each do |meaning, value|
+    filler = {:english => value[0], :japanese => value[1]}
     dictionary[meaning] = filler
   end
   dictionary
