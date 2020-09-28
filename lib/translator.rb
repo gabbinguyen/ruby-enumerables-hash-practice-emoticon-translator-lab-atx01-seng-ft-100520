@@ -5,13 +5,17 @@ def load_library(emoticon_file)
   # code goes here
   emoticons = YAML.load_file('./lib/emoticons.yml')
 
-  hash = {:get_meaning => {}, :get_emoticon => {}}
-  emoticons.each do |key, value|
-    hash[:get_meaning][value[1]] = key
-    hash[:get_emoticon][value[0]] = value[1]
+  emoticon_lib = { :get_meaning => {},
+                   :get_emoticon => {} }
+
+  emoticons.each do |meaning, value|
+    english = value[0]
+    japanese = value[1]
+    emoticon_lib[:get_meaning][japanese] = meaning
+    emoticon_lib[:get_emoticon][english] = japanese
   end
-  hash
-end	
+  emoticon_lib
+end
 
 def get_japanese_emoticon(emoticon_file, emoticon)
   # code goes here
