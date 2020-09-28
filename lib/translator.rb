@@ -37,5 +37,4 @@ def get_english_meaning (file, jap_emoji)
     eng_meaning = "Sorry, that emoticon was not found"
   end
   eng_meaning
-
 end
