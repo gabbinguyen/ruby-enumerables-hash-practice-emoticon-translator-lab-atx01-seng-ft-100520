@@ -28,9 +28,14 @@ def get_japanese_emoticon(file, emoticon)
   jap_emoji
 end
 
-def get_english_meaning(file, emoticon)
-  # code goes here
-  emoticon_lib = load_library(file)
-  english_emoticon = emoticon_lib[:get_meaning][emoticon]
-  english_emoticon ? english_emoticon : 'Sorry, that emoticon was not found'
+def get_english_meaning (file, jap_emoji)
+  dictionary = load_library(file)
+  entry = dictionary.select {|meanings, emoji_hash| emoji_hash[:japanese] == jap_emoji}
+  if entry.keys[0]
+    eng_meaning = entry.keys[0]
+  else
+    eng_meaning = "Sorry, that emoticon was not found"
+  end
+  eng_meaning
+
 end
