@@ -3,24 +3,29 @@ require 'yaml'
 
 def load_library(file)
   # code goes here
-  emoticons = YAML.load_file('./lib/emoticons.yml')
-
-  emoticon_lib = { }
-
-  emoticons.each do |meaning, value|
-    filler = { :english => value[0],
-               :japanese => value[1]
-             }
-     emoticon_lib[meaning] = filler
+  emojis = YAML.load_file(file)
+  dictionary = {}
+  emojis.each do |meaning, pic_array|
+    filler = {:english => pic_array[0], :japanese => pic_array[1]}
+    dictionary[meaning] = filler
   end
-  emoticon_lib
+  dictionary
 end
 
 def get_japanese_emoticon(file, emoticon)
   # code goes here
-  emoticon_lib = load_library(file)
-  japanese_emoticon = emoticon_lib[:get_emoticon][emoticon]
-  japanese_emoticon ? japanese_emoticon : 'Sorry, that emoticon was not found'
+  dictionary =load_library(file)
+  entry = dictionary.select {|meanings, emoji_hash| emoji_hash[:english] == eng_emoji}
+  jap_emoji = nil
+  entry.each do |meanings, emoji_hash|
+    if entry[meanings][:japanese]
+      jap_emoji = entry[meanings][:japanese]
+    end
+  end
+  if jap_emoji == nil
+    jap_emoji = "Sorry, that emoticon was not found"
+  end
+  jap_emoji
 end
 
 def get_english_meaning(file, emoticon)
