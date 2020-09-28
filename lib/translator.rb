@@ -9,8 +9,11 @@ def load_library(emoticon_file)
                    :get_emoticon => {} }
 
   emoticons.each do |meaning, value|
-    filler = {:english => pic_array[0], :japanese => pic_array[1]}
-     emoticon_lib[meaning] = filler
+    filler = { :english => value[0],
+               :japanese => value[1]
+             }
+    emoticon_lib[:get_meaning][japanese] = meaning
+    emoticon_lib[:get_emoticon][english] = japanese
   end
   emoticon_lib
 end
