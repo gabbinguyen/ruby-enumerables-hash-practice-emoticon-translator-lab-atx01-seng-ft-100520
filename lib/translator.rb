@@ -12,7 +12,7 @@ def load_library(file)
   dictionary
 end
 
-def get_japanese_emoticon(file, emoticon)
+def get_japanese_emoticon(file, eng_emoji)
   # code goes here
   dictionary =load_library(file)
   entry = dictionary.select {|meanings, emoji_hash| emoji_hash[:english] == eng_emoji}
