@@ -1,9 +1,9 @@
 # require modules here
 require 'yaml'
 
-def load_library(emoticon_file)
+def load_library(file)
   # code goes here
-  emoticons = YAML.load_file('./lib/emoticons.yml')
+  emojis = YAML.load_file('./lib/emoticons.yml')
 
   dictionary = {}
   emojis.each do |meaning, pic_array|
